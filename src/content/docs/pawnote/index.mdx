@@ -1,0 +1,40 @@
+---
+title: Use easily the internal API of PRONOTE
+description: Introducing Pawnote, an unofficial wrapper for PRONOTE's internal API
+template: splash
+banner:
+  content: |
+    Pawnote is still in beta !
+hero:
+  title: Pawnote
+  tagline: An unofficial wrapper for interacting with PRONOTE's internal APIs.
+  actions:
+    - text: Install
+      link: /pawnote/installation
+      icon: right-arrow
+      variant: primary
+    - text: GitHub
+      link: https://github.com/LiterateInk/Pawnote
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why Pawnote ?
+
+<CardGrid stagger>
+  <Card title="Multi-language" icon="rocket">
+    Supports JavaScript, TypeScript, Dart and Flutter, and more languages to come !
+  </Card>
+  <Card title="Support for 2023 version" icon="approve-check">
+    Pawnote supports the latest version of PRONOTE, and should also support version 2022 and earlier
+    but some properties can be wrong or `null`.
+  </Card>
+  <Card title="For everyone" icon="star">
+    Pawnote is giving you the ability to interact with PRONOTE's internal API without having to worry about the implementation,
+    just use the abstractions and you're done.
+  </Card>
+  <Card title="Same flow as the UI" icon="puzzle">
+    Pawnote tries to have the same flow as the official client UI so that it can provide full context depending on what is requested.
+  </Card>
+</CardGrid>

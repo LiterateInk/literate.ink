@@ -1,0 +1,37 @@
+---
+title: Installation
+description: Want to integrate Pawnote in your project? Here's how to get started.
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="JS/TS">
+    <p>Pawnote is published to <a href="https://npmjs.com/package/pawnote" target="_blank">NPM</a> so you can install it using your favorite package manager.</p>
+
+    <Tabs>
+      <TabItem label="pnpm">
+        <Code code="pnpm add pawnote" lang="bash" />
+      </TabItem>
+      <TabItem label="yarn">
+        <Code code="yarn add pawnote" lang="bash" />
+      </TabItem>
+      <TabItem label="npm">
+        <Code code="npm install --save pawnote" lang="bash" />
+      </TabItem>
+    </Tabs>
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    <p>Pawnote is <b>currently not available</b> on pub.dev since it's still a work in progress, even though, in the future you might be able to install it using the following command.</p>
+    
+    <Tabs>
+      <TabItem label="Dart">
+        <Code code="dart pub add pawnote" lang="bash" />
+      </TabItem>
+      <TabItem label="Flutter">
+        <Code code="flutter pub add pawnote" lang="bash" />
+      </TabItem>
+    </Tabs>
+  </TabItem>
+</Tabs>

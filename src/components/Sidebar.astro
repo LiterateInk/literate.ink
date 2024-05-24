@@ -1,0 +1,28 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+
+const firstPathSegment = Astro.props.slug.split('/')[0];
+
+const filterItems = (entries: typeof Astro.props.sidebar): typeof Astro.props.sidebar => {
+  const items: typeof Astro.props.sidebar = [];
+
+  for (const entry of entries) {
+    if (entry.type === 'group') {
+      const filteredEntries = filterItems(entry.entries);
+
+      if (filteredEntries.length > 0)
+        items.push({ ...entry, entries: filteredEntries });
+    }
+
+    else if (entry.type === 'link' && entry.href.startsWith('/' + firstPathSegment))
+      items.push(entry);
+  }
+
+  return items;
+};
+
+Astro.props.sidebar = filterItems(Astro.props.sidebar);
+---
+
+<Default {...Astro.props}><slot /></Default>
