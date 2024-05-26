@@ -23,8 +23,8 @@ import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
   </TabItem>
 
   <TabItem label="Dart/Flutter">
-    <p>Pawnote is <b>currently not available</b> on pub.dev since it's still a work in progress, even though, in the future you might be able to install it using the following command.</p>
-    
+    Pawnote is **currently not available** on `pub.dev` since it's still a work in progress, even though, in the future you might be able to install it using the following command.
+
     <Tabs>
       <TabItem label="Dart">
         <Code code="dart pub add pawnote" lang="bash" />
@@ -33,5 +33,11 @@ import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
         <Code code="flutter pub add pawnote" lang="bash" />
       </TabItem>
     </Tabs>
+
+    You'll be able to use Pawnote using the following import :
+
+    ```dart
+    import "package:pawnote/pawnote.dart";
+    ```
   </TabItem>
 </Tabs>
