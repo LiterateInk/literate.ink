@@ -49,3 +49,35 @@ final client = await Authenticator.withStudentCredentials(
 ```
   </TabItem>
 </Tabs>
+
+## QR Code
+
+When generating a QR Code on the client, you should decode it manually to get the data inside of the QR Code.
+
+<Tabs>
+  <TabItem label="JS/TS">
+    ```typescript
+import { authenticatePronoteQRCode } from "pawnote";
+
+const client = await authenticatePronoteQRCode({
+    pinCode: "XXXX", // 4 numbers you provided in Pronote.
+    dataFromQRCode: {
+    jeton: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    login: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    url: "https://.../pronote"
+  },
+
+  // This is a unique identifier that will be used to identify the device
+  // with the server. It can be anything, but it must be unique.
+  deviceUUID: "my-device-uuid"
+});
+    ```
+  </TabItem>
+  <TabItem label="Dart">
+    Currently **not implemented**.
+  </TabItem>
+</Tabs>
+
+## Token
+
+(TODO)
