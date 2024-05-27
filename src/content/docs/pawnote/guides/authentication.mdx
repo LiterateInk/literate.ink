@@ -5,16 +5,15 @@ description: Probably the first thing you want to do when using Pawnote is authe
 
 import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
 
-You can authenticate to PRONOTe using three different methods :
+You can authenticate to PRONOTE using three different methods :
 
-- Credentials
-- QR Code
-- Token
+- [Credentials](#credentials)
+- [QR Code](#qr-code)
+- [Token](#token) : usually called the "next time token"
 
 ## Credentials
 
 You can use your credentials from PRONOTE to directly authenticate.
-This method will then give you a token that can be used to reauthenticate later.
 
 <Tabs>
   <TabItem label="JS/TS">
@@ -27,8 +26,7 @@ const client = await authenticatePronoteCredentials("https://demo.index-educatio
   username: "demonstration",
   password: "pronotevs",
 
-  // This is a unique identifier that will be used to identify the device
-  // with the server. It can be anything, but it must be unique.
+  // An unique identifier that will be used to identify the device.
   deviceUUID: "my-device-uuid"
 });
 ```
@@ -42,8 +40,7 @@ final client = await Authenticator.withStudentCredentials(
   username: 'demonstration',
   password: 'pronotevs',
 
-  // This is a unique identifier that will be used to identify the device
-  // with the server. It can be anything, but it must be unique.
+  // An unique identifier that will be used to identify the device.
   deviceUuid: 'my-device-uuid'
 );
 ```
@@ -52,26 +49,50 @@ final client = await Authenticator.withStudentCredentials(
 
 ## QR Code
 
-When generating a QR Code on the client, you should decode it manually to get the data inside of the QR Code.
+You can generate a QR Code from the desktop PRONOTE client by doing the following :
+
+![Create a QR Code](../../../../assets/screenshots/pronote-qr-code-setup.png)
+
+You must enter a PIN code, here I typed `1234`, don't forget it we'll use it later.
+By clicking "Générer le QR Code", you'll see a window giving you a QR Code that looks like this :
+
+![QR Code](../../../../assets/screenshots/pronote-qr-code.png)
+
+You should decode it manually. You can use online services like [zxing.org](https://zxing.org/w/decode.jspx) to decode it.
+
+For the previous QR Code, you should get the following data :
+
+```jsonc
+{
+  "jeton": "B88BE6BEEFE21F3AFF13457CD74B28728A61D2CE4DBB0E92E6BBAD26D110B99E50EF6A0529F7B5FFFCEFA7739452F22462642A3AD77B3BF2AAD34EBC9385A406C50BF6934F77B5082FF89D080253307DF8F48C7EF44EE2197879ECBD4BFD10F132659269B115F57AD495B0E01AB9F5F0",
+  "login": "E641C7BAD9A59DC9D57C63F1D682895C",
+  // This is the URL of my private VM instance.
+  "url": "https://pronote-vm.dev/pronote/mobile.eleve.html"
+}
+```
+
+Now you can simply authenticate with Pawnote using the following code :
 
 <Tabs>
   <TabItem label="JS/TS">
-    ```typescript
+```typescript
 import { authenticatePronoteQRCode } from "pawnote";
 
 const client = await authenticatePronoteQRCode({
-    pinCode: "XXXX", // 4 numbers you provided in Pronote.
-    dataFromQRCode: {
-    jeton: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    login: "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    url: "https://.../pronote"
+  // The 4 numbers you typed earlier.
+  pinCode: "1234", 
+
+  // This is the data from the QR Code.
+  dataFromQRCode: {
+    jeton: "B88BE6BEEFE21F3AFF13457CD74B28728A61D2CE4DBB0E92E6BBAD26D110B99E50EF6A0529F7B5FFFCEFA7739452F22462642A3AD77B3BF2AAD34EBC9385A406C50BF6934F77B5082FF89D080253307DF8F48C7EF44EE2197879ECBD4BFD10F132659269B115F57AD495B0E01AB9F5F0",
+    login: "E641C7BAD9A59DC9D57C63F1D682895C",
+    url: "https://pronote-vm.dev/pronote/mobile.eleve.html"
   },
 
-  // This is a unique identifier that will be used to identify the device
-  // with the server. It can be anything, but it must be unique.
+  // An unique identifier that will be used to identify the device.
   deviceUUID: "my-device-uuid"
 });
-    ```
+```
   </TabItem>
   <TabItem label="Dart">
     Currently **not implemented**.
@@ -80,4 +101,31 @@ const client = await authenticatePronoteQRCode({
 
 ## Token
 
-(TODO)
+You can use the "next time token" to authenticate to PRONOTE.
+This token is given whenever you authenticate (using whatever method) to PRONOTE and is availablle only one time.
+
+As its name suggests, it's used to authenticate the next time you want to authenticate.
+
+**You should use the same device UUID as you used to generate the token.**
+
+Also note that this method doesn't work on demo instances (like `https://demo.index-education.net/pronote`), you must use a real instance.
+
+<Tabs>
+  <TabItem label="JS/TS">
+```typescript
+import { authenticateToken, PronoteApiAccountId } from "pawnote";
+
+const client = await authenticateToken("https://pronote-vm.dev/pronote", {
+  accountTypeID: PronoteApiAccountId.Student,
+  username: "lisa.boulanger",
+  token: "...",
+
+  // You must keep the SAME device UUID as the one you used to generate the token.
+  deviceUUID: "my-device-uuid"
+});
+```
+  </TabItem>
+  <TabItem label="Dart">
+    Currently **not implemented**.
+  </TabItem>
+</Tabs>
