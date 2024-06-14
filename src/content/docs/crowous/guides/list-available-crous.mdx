@@ -1,0 +1,29 @@
+---
+title: List available Crous
+description: Get every available Crous you can use within the API
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="JS/TS">
+```typescript
+import { getAvailableCrous } from "crowous";
+
+// 1. Get the available Crous
+const availableCrous = await getAvailableCrous();
+
+// 2. You can now use any of the available Crous
+for (const crous of availableCrous) {
+  console.log(`+ ${crous.name} with the identifier "${crous.identifier}"`);
+}
+```
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    *Currently not implemented.*
+  </TabItem>
+</Tabs>
+
+You'll have the `name` and the `identifier` of every available Crous you can use within the API.
+The `identifier` is used for further requests, such as [getting restaurants](./list-restaurants.mdx) in this Crous.

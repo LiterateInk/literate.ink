@@ -1,0 +1,40 @@
+---
+title: List meals of a restaurant
+description: Get meals and menus from a given restaurant 
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="JS/TS">
+```typescript
+// `restaurant` is an instance of `Restaurant`.
+const today = new Date();
+
+// Get meals for today.
+const meals = await restaurant.getMeals(today);
+if (meals.length === 0) {
+  console.log("No meals for today.");
+  // Probably because the restaurant is closed or
+  // the data isn't available anymore/yet for today.
+}
+else {
+  console.log("Meals for today:");
+  
+  for (const meal of meals) {
+    console.log(`- ${meal.timing}`); // MealTiming.MORNING or MIDDAY or EVENING
+    if (meal.information) console.log(`> ${meal.information}`);
+
+    for (const category of meal.categories) {
+      // List every dishes in a category.
+      console.log(`  - ${category.name}: ${category.dishes.join(", ")}`);
+    }
+  }
+}
+```
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    *Currently not implemented.*
+  </TabItem>
+</Tabs>

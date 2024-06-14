@@ -1,0 +1,76 @@
+---
+title: List restaurants in a Crous
+description: Get every available restaurants using a given Crous identifier. 
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="JS/TS">
+
+```typescript
+// If you already have a Crous instance, you can do :
+const restaurants = await crous.getRestaurants();
+// Otherwise you can use an identifier manually :
+import { getRestaurants } from "crowous";
+const restaurants = await getRestaurants("limoges"); // Where "limoges" is an identifier.
+```
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    *Currently not implemented.*
+  </TabItem>
+</Tabs>
+
+Now that you have the list of restaurants, you can get specific properties of each restaurant.
+
+<Tabs>
+  <TabItem label="JS/TS">
+
+```typescript
+const firstRestaurant = restaurants[0];
+console.log(`The first restaurant is ${firstRestaurant.title} and is located at ${firstRestaurant.address} (${firstRestaurant.area}).`);
+console.log(firstRestaurant.description); // or firstRestaurant.shortDescription
+console.log(firstRestaurant.latitude, firstRestaurant.longitude);
+console.log("Has wifi?", firstRestaurant.wifi ? "yes" : "no");
+console.log("Has accessibility?", firstRestaurant.accessibility ? "yes" : "no");
+
+// Some manually written properties (can't be predictable)
+console.log(firstRestaurant.howToAccess);
+console.log(firstRestaurant.operationalHours);
+
+// Contact information
+console.log(firstRestaurant.phone)
+if (firstRestaurant.email) console.log(firstRestaurant.email);
+
+// Payment methods (from enumeration PaymentMethod ; example: PaymentMethod.IZLY)
+firstRestaurant.paymentMethods.forEach(method => console.log(method));
+```
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    *Currently not implemented.*
+  </TabItem>
+</Tabs>
+
+You can also check if a restaurant is open at a specific moment.
+
+<Tabs>
+  <TabItem label="JS/TS">
+```typescript
+const firstRestaurant = restaurants[0];
+const dayIndex = 0; // 0 is Monday, 1 is Tuesday, ..., 6 is Sunday
+
+console.log("morning:", firstRestaurant.isOpenMorning(dayIndex) ? "open" : "closed");
+console.log("midday: ", firstRestaurant.isOpenMidday(dayIndex)  ? "open" : "closed");
+console.log("evening:", firstRestaurant.isOpenEvening(dayIndex) ? "open" : "closed");
+```
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    *Currently not implemented.*
+  </TabItem>
+</Tabs>
+
+You can also get the menu of a restaurant.
+Refer to [this guide](./list-meals.mdx) for more information.

@@ -1,0 +1,35 @@
+---
+title: Use easily the API of Les Crous
+description: Introducing Crowous, an unofficial wrapper for Les Crous' mobile application public API
+template: splash
+banner:
+  content: |
+    🚀 v0.1.1 just dropped for JS/TS !
+hero:
+  title: Crowous
+  tagline: An unofficial wrapper for interacting with Les Crous' mobile application public API
+  actions:
+    - text: Install
+      link: /crowous/installation
+      icon: right-arrow
+      variant: primary
+    - text: GitHub
+      link: https://github.com/LiterateInk/Crowous
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why Crowous ?
+
+<CardGrid stagger>
+  <Card title="Multi-language" icon="rocket">
+    Supports JavaScript, TypeScript, Dart and Flutter, and more languages to come !
+  </Card>
+  <Card title="For everyone" icon="star">
+    Crowous is giving you the ability to interact with this API without having to worry about the implementation, just use the abstractions and you're done.
+  </Card>
+  <Card title="Open Source" icon="github">
+    Crowous is open source, so everyone can contribute to it and make it better.
+  </Card>
+</CardGrid>

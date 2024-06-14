@@ -1,0 +1,43 @@
+---
+title: Installation
+description: Want to integrate Crowous in your project? Here's how to get started.
+---
+
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="JS/TS">
+    Crowous is published to [NPM](https://npmjs.com/package/crowous) so you can install it using your favorite package manager.
+
+    <Tabs>
+      <TabItem label="pnpm">
+        <Code code="pnpm add crowous" lang="bash" />
+      </TabItem>
+      <TabItem label="yarn">
+        <Code code="yarn add crowous" lang="bash" />
+      </TabItem>
+      <TabItem label="npm">
+        <Code code="npm install --save crowous" lang="bash" />
+      </TabItem>
+    </Tabs>
+  </TabItem>
+
+  <TabItem label="Dart/Flutter">
+    Crowous is **currently not available** on `pub.dev` since it's still a work in progress, even though, in the future you might be able to install it using the following command.
+
+    <Tabs>
+      <TabItem label="Dart">
+        <Code code="dart pub add crowous" lang="bash" />
+      </TabItem>
+      <TabItem label="Flutter">
+        <Code code="flutter pub add crowous" lang="bash" />
+      </TabItem>
+    </Tabs>
+
+    You'll be able to use Crowous using the following import :
+
+    ```dart
+    import "package:crowous/crowous.dart";
+    ```
+  </TabItem>
+</Tabs>
