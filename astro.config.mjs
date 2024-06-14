@@ -49,6 +49,18 @@ export default defineConfig({
         autogenerate: {
           directory: 'pawnote/pronote-internals',
         }
+      },
+
+      // Crowous documentation entries
+      {
+        label: 'Installation',
+        link: '/crowous/installation'
+      },
+      {
+        label: 'Guides',
+        autogenerate: {
+          directory: 'crowous/guides',
+        }
       }
     ]
   })],
