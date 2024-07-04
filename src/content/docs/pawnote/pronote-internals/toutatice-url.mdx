@@ -1,0 +1,63 @@
+---
+title: Handling Toutatice URLs
+description: Toutatice URLs system
+---
+
+In the development of applications that interact with the Pronote system, it is important to understand the peculiarities of URLs associated with the Toutatice domain. This note provides a comprehensive explanation of the specific characteristics of Toutatice URLs and offers practical guidance for handling them effectively in real-world applications.
+
+## Background
+Schools have unique URLs to access their Pronote instances, typically formatted as ```https://[school-code].index-education.net/```. However, some institutions use an alternative domain, ```https://[school-code].pronote.toutatice.fr/```, which can lead to confusion and connection issues if not handled correctly.
+
+## Identifying Toutatice URLs
+### Typical Pronote URL Structure
+A standard Pronote URL is structured as follows :
+```https://[school-code].index-education.net/```
+Toutatice URL Structure
+For schools that use the Toutatice domain, the URL structure is :
+```https://[school-code].pronote.toutatice.fr/```
+
+### Handling URL Failures
+When interacting with Pronote instances, your application might initially attempt to connect using the ```index-education.net``` domain. If this connection fails, it is important to retry using the ```pronote.toutatice.fr``` domain. The following sections outline the steps and code required to handle such cases.
+
+### Implementation Example
+Below is an example implementation in JavaScript from [Papillon](https://github.com/PapillonApp), how to handle the URL switch when a connection attempt fails:
+
+```javascript
+try {
+    information = await getPronoteInstanceInformation(defaultPawnoteFetcher, {
+        pronoteURL
+    });
+} catch (error) {
+    try {
+        // Replace the domain in the URL
+        pronoteURL = pronoteURL.replace(".index-education.net", ".pronote.toutatice.fr");
+        console.log("Trying with the cleaned up URL:", pronoteURL);
+        
+        // Retry fetching information with the new URL
+        information = await getPronoteInstanceInformation(defaultPawnoteFetcher, {
+            pronoteURL
+        });
+    } catch (error) {
+        showAlert({
+            title: "Error",
+            message: "Unable to fetch information from the Pronote instance."
+        });
+    }
+    return;
+}
+```
+### Explanation of the Implementation
+1. **Initial Attempt :**
+The application first attempts to fetch the Pronote instance information using the provided ```index-education.net``` URL.
+2. **Error Handling :**
+If the initial attempt fails, the ```catch``` block is executed.
+3. **URL Modification :**
+Within the catch block, the application modifies the URL by replacing the domain ```index-education.net``` with ```pronote.toutatice.fr```.
+4. **Retry Attempt :**
+The application then retries fetching the Pronote instance information using the modified Toutatice URL.
+5. **Final Error Handling :**
+If the retry attempt also fails, an alert is shown to the user indicating the failure to retrieve Pronote instance information.
+
+## Conclusion
+Handling Toutatice URLs requires careful consideration of domain differences and robust error handling. By implementing the strategies described in this docs, you can ensure seamless connectivity to Pronote instances, regardless of the domain used by the institution.
+Above all, bear in mind that this is a stage in which testing is omnipresent in order to achieve your goals.
