@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import vercel from "@astrojs/vercel/serverless";
+import netlify from "@astrojs/netlify";
 
 export default defineConfig({
   integrations: [starlight({
@@ -66,5 +66,5 @@ export default defineConfig({
   })],
 
   output: "server",
-  adapter: vercel()
+  adapter: netlify()
 });
