@@ -1,9 +1,13 @@
 /* @refresh reload */
-import { render } from 'solid-js/web'
+import "virtual:uno.css";
+import "@unocss/reset/tailwind.css";
 
-import './index.css'
-import App from './App'
+import { render } from 'solid-js/web'
+import FullScreenLoader from "./components/FullScreenLoader";
+import HomePage from "./pages/Home";
 
 const root = document.getElementById('root')
-
-render(() => <App />, root!)
+render(() => <>
+  <FullScreenLoader />
+  <HomePage />
+</>, root!)
