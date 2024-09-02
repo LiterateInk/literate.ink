@@ -14,8 +14,10 @@
     "solid-motionone": "^1.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.5.2",
     "typescript": "^5.5.3",
     "unocss": "^0.62.3",
+    "unplugin-icons": "^0.19.2",
     "vite": "^5.4.1",
     "vite-plugin-solid": "^2.10.2"
   }
