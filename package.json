@@ -14,6 +14,8 @@
     "solid-motionone": "^1.0.0"
   },
   "devDependencies": {
+    "@iconify-json/ic": "^1.2.0",
+    "@iconify-json/mdi": "^1.2.0",
     "@types/node": "^22.5.2",
     "typescript": "^5.5.3",
     "unocss": "^0.62.3",
