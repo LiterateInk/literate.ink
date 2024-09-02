@@ -11,13 +11,13 @@
   to = "https://github.com/LiterateInk/Pawnote/:splat"
 
 [[redirects]]
-  from = "/pawdirecte"
-  to = "https://github.com/LiterateInk/Pawdirecte"
+  from = "/pawdirecte/*"
+  to = "https://github.com/LiterateInk/Pawdirecte/:splat"
 
 [[redirects]]
-  from = "/crowous"
-  to = "https://github.com/LiterateInk/Crowous"
+  from = "/crowous/*"
+  to = "https://github.com/LiterateInk/Crowous/:splat"
 
 [[redirects]]
-  from = "/ezly"
-  to = "https://github.com/LiterateInk/Ezly"
+  from = "/ezly/*"
+  to = "https://github.com/LiterateInk/Ezly/:splat"
