@@ -1,4 +1,5 @@
 /* @refresh reload */
+import "./assets/css/satoshi.css";
 import "virtual:uno.css";
 import "@unocss/reset/tailwind.css";
 
