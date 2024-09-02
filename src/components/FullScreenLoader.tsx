@@ -6,7 +6,7 @@ const step = (i: number) => i * duration;
 
 const FullScreenLoader: Component = () => {
   return (
-    <Motion.div class="fixed z-50"
+    <Motion.div class="fixed z-50 font-600 text-white"
       initial={{ y: 0 }}
       animate={{ y: "-100%" }}
       transition={{ duration: duration * 2.25, delay: step(6) }}
@@ -18,7 +18,7 @@ const FullScreenLoader: Component = () => {
           animate={{ opacity: 0 }}
           transition={{ duration, delay: step(4) }}
         >
-          <Motion.div class="text-white flex gap-2 text-4xl"
+          <Motion.div class="flex gap-2 text-4xl"
             initial={{ y: 16 }}
             animate={{ y: 0 }}
             transition={{ duration, delay: step(2) }}
@@ -38,7 +38,7 @@ const FullScreenLoader: Component = () => {
               more
             </Motion.p>
           </Motion.div>
-          <Motion.div class="text-white flex gap-2 text-4xl"
+          <Motion.div class="flex gap-2 text-4xl"
             initial={{ opacity: 0, y: 60, x: 46 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration, delay: step(2), x: { delay: step(3) } }}
@@ -66,10 +66,10 @@ const FullScreenLoader: Component = () => {
           animate={{ opacity: 1, y: "40vh" }}
           transition={{ duration, delay: step(4), y: { delay: step(6), duration: duration * 2 } }}
         >
-          <Motion.p class="text-white text-5xl"
+          <Motion.p class="text-5xl font-600"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: [0, .2, 1], y: 0 }}
-            transition={{ duration: duration *2, delay: step(4), opacity: { offset: [0, 0.25, 1]} }}
+            transition={{ duration: duration * 2, delay: step(4), opacity: { offset: [0, 0.25, 1] } }}
           >
             Literate
           </Motion.p>
