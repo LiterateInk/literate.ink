@@ -7,8 +7,8 @@
   to = "https://discord.gg/f5KNCnMWzB"
 
 [[redirects]]
-  from = "/pawnote"
-  to = "https://github.com/LiterateInk/Pawnote"
+  from = "/pawnote/*"
+  to = "https://github.com/LiterateInk/Pawnote/:splat"
 
 [[redirects]]
   from = "/pawdirecte"
